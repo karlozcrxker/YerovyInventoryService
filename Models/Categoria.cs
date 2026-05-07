@@ -10,10 +10,10 @@ namespace YerovyInventoryService.Models
         [StringLength(100)]
         public string Nombre { get; set; }
 
-        [Range(0, 1000000)]
+        [StringLength(100000)]
         public string Descripcion { get; set; }
 
-        [Range(0, 1)]
+        [StringLength(100000)]
         public string Estado { get; set; }
     }
 }
