@@ -107,7 +107,5 @@ namespace YerovyInventoryService.Controllers
 
             return RedirectToAction("Index");
         }
-
-
     }
 }
