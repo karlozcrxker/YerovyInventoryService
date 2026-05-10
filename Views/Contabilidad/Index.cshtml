@@ -1,0 +1,11 @@
+﻿@if (Context.Session.GetString("Rol") != "admin")
+{
+    <h1>ERROR</h1>
+    <p>Solo los administradores tienen permitido el acceso.</p>
+}
+
+@if (Context.Session.GetString("Rol") == "admin")
+{
+    <h1>INFORMACIÓN</h1>
+    <p>Actualmente esta interfaz se encuentra en desarrollo :)</p>
+}
