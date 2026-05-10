@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using YerovyInventoryService.Data;
 using YerovyInventoryService.Models;
 
-namespace YerovyInventoryService.Controllers
+namespace TiendaVirtualGuacas.Controllers
 {
     public class ProductoController : Controller
     {
@@ -116,7 +116,7 @@ namespace YerovyInventoryService.Controllers
                 {
                     imagen.CopyTo(stream);
                 }
-                productoBD.ImagenUrl = "/mages/" + imagen.FileName;
+                productoBD.ImagenUrl = "/images/" + imagen.FileName;
             }
 
             _context.SaveChanges();
@@ -135,7 +135,7 @@ namespace YerovyInventoryService.Controllers
             var rol = HttpContext.Session.GetString("Rol");
 
             //SOLO ADMIN PUEDE ELIMINAR
-            if (rol != "Admin")
+            if (rol != "admin")
             {
                 return RedirectToAction("Index");
             }

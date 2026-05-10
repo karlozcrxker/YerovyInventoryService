@@ -1,10 +1,10 @@
 ﻿@model List<YerovyInventoryService.Models.Producto>
 
-<h2 class="mb-3">Lista de Productos</h2>
+<h2 class="mb-3">Lista de Productos/Servicios</h2>
 
 @if (Context.Session.GetString("Rol") == "admin")
 {
-    <a class="btn btn-success mb-3" href="/Producto/Create">+ Nuevo Producto</a>
+    <a class="btn btn-success mb-3" href="/Producto/Create">+ Nuevo Producto/Servicio</a>
 }
 
 <div class="row">
@@ -23,6 +23,7 @@
                     <h5 class="card-tittle">@item.Nombre</h5>
 
                     <p class="card-text">
+                        Tipo: @item.Tipo <br />
                         Precio: $@item.Precio <br />
                         Stock: @item.Stock <br />
                         Categoria: @item.Categoria?.Nombre

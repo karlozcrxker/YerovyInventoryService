@@ -1,43 +1,33 @@
-﻿@model List<YerovyInventoryService.Models.Categoria>
-
-<h2 class="mb-3">Lista de Categorias</h2>
+﻿@if (Context.Session.GetString("Rol") != "admin")
+{
+    <h1>ERROR</h1>
+    <p>Solo los administradores tienen permitido el acceso.</p>
+}
 
 @if (Context.Session.GetString("Rol") == "admin")
 {
+    @model List<YerovyInventoryService.Models.Categoria>
+
+    <h2 class="mb-3">Lista de Categorias</h2>
+
     <a class="btn btn-success mb-3" href="/Categoria/Create">+ Nueva Categoria</a>
-}
 
-<table class="table">
-    <thead class="table-dark">
-        <tr>
-            <th>Nombre</th>
-            <th>Descripcion</th>
-            <th>Estado</th>
-            @if (Context.Session.GetString("Rol") == "admin")
-            {
-                <th>Acciones</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var cat in Model)
-        {
+    <table class="table">
+        <thead class="table-dark">
             <tr>
-                <td>@cat.Nombre</td>
-                <td>@cat.Descripcion</td>
-                <td>
-                    @if (string.IsNullOrEmpty(cat.Nombre))
-                    {
-                        <span class="text-danger" @cat.Id">Sin nombre</span>
-                    }
-                    else
-                    {
-                        <span class="text-success" @cat.Id">Activa</span>
-                    }
-                </td>
-
-                @if (Context.Session.GetString("Rol") == "admin")
-                {
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cat in Model)
+            {
+                <tr>
+                    <td>@cat.Nombre</td>
+                    <td>@cat.Descripcion</td>
+                    <td>@cat.Estado</td>
                     <td>
                         <a class="btn btn-warning btn-sm"
                            href="/Categoria/Edit/@cat.Id">Editar</a>
@@ -45,9 +35,8 @@
                         <a class="btn btn-danger btn-sm"
                            href="/Categoria/Delete/@cat.Id">Eliminar</a>
                     </td>
-                }
-
-            </tr>
-        }
-    </tbody>
-</table>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

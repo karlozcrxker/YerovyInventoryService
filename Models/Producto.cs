@@ -7,11 +7,14 @@ namespace YerovyInventoryService.Models
     {
         public int Id { get; set; }
 
+        [StringLength(100)]
+        public string Tipo { get; set; }
+        
         [Required]
         [StringLength(100)]
         public string Nombre { get; set; }
 
-        [Range(0, 1000000)]
+        [Range(0, 1000000000)]
         public double Precio { get; set; }
 
         [Range(0, 100)]
