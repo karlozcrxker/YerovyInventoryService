@@ -77,7 +77,7 @@ namespace YerovyInventoryService.Controllers
             return View(usuario);
         }
 
-        //Actualizar producto
+        //Actualizar usuario
         [HttpPost]
         public IActionResult Edit(Usuario usuario)
         {

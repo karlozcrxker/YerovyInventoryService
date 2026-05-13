@@ -1,11 +1,18 @@
-﻿@if (Context.Session.GetString("Rol") != "admin")
-{
-    <h1>ERROR</h1>
-    <p>Solo los administradores tienen permitido el acceso.</p>
+﻿@{
+    ViewData["Title"] = "En desarrollo";
 }
 
-@if (Context.Session.GetString("Rol") == "admin")
-{
-    <h1>INFORMACIÓN</h1>
-    <p>Actualmente esta interfaz se encuentra en desarrollo :)</p>
-}
+<div class="yerovy-card text-center py-5">
+
+    <i class="fa-solid fa-screwdriver-wrench mb-4"
+       style="font-size:4rem;color:#ff2d2d"></i>
+
+    <h1 class="page-title">
+        La interfaz se encuentra en desarrollo
+    </h1>
+
+    <p class="page-subtitle">
+        Próximamente estará disponible este módulo.
+    </p>
+
+</div>

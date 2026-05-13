@@ -1,43 +1,218 @@
 ﻿@model List<YerovyInventoryService.Models.Producto>
 
-<h2 class="mb-3">Lista de Productos/Servicios</h2>
-
-@if (Context.Session.GetString("Rol") == "admin")
-{
-    <a class="btn btn-success mb-3" href="/Producto/Create">+ Nuevo Producto/Servicio</a>
+@{
+    ViewData["Title"] = "Inventario";
 }
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3 mb-4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-            <div class="card h-100 shadow">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
-                <img src="@item.ImagenUrl"
-                     class="card-img-top"
-                     style="height:200px; object-fit:cover;" />
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-                <div class="card-body">
+<style>
 
-                    <h5 class="card-tittle">@item.Nombre</h5>
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
 
-                    <p class="card-text">
-                        Tipo: @item.Tipo <br />
-                        Precio: $@item.Precio <br />
-                        Stock: @item.Stock <br />
-                        Categoria: @item.Categoria?.Nombre
-                    </p>
+    body {
+        background-color: #050505;
+    }
+
+    .inventory-container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        color: white;
+    }
+
+    .page-title {
+        font-size: 3.2rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .red-text {
+        color: #ff2d2d;
+    }
+
+    .page-description {
+        color: #bdbdbd;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        max-width: 800px;
+    }
+
+    .btn-yerovy {
+        background: linear-gradient( 135deg, #a80000, #ff2d2d );
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 12px 22px;
+        border-radius: 14px;
+        transition: .3s ease;
+    }
+
+        .btn-yerovy:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255,0,0,.35);
+        }
+
+    .product-card {
+        background-color: #101010;
+        border: 1px solid #252525;
+        border-radius: 24px;
+        overflow: hidden;
+        transition: .3s ease;
+        height: 100%;
+    }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,0,0,.3);
+            box-shadow: 0 10px 25px rgba(255,0,0,.08);
+        }
+
+    .product-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .product-body {
+        padding: 25px;
+    }
+
+    .product-title {
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .product-info {
+        color: #c2c2c2;
+        line-height: 2;
+    }
+
+        .product-info strong {
+            color: white;
+        }
+
+    .product-actions {
+        margin-top: 25px;
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-edit {
+        background-color: #ffc107;
+        border: none;
+        color: black;
+        font-weight: 600;
+        border-radius: 12px;
+        padding: 10px 18px;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        font-weight: 600;
+        border-radius: 12px;
+        padding: 10px 18px;
+    }
+
+        .btn-edit:hover,
+        .btn-delete:hover {
+            transform: translateY(-2px);
+        }
+
+</style>
+
+<div class="container inventory-container">
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-5">
+
+        <div>
+
+            <h1 class="page-title">Productos y <span class="red-text">Servicios
+                </span>
+            </h1>
+
+            <p class="page-description">
+                Consulta los productos, servicios y artículos
+                disponibles dentro del establecimiento
+                Polarizados Yerovy.
+            </p>
+        </div>
+
+        @if (Context.Session.GetString("Rol") == "admin")
+        {
+            <a class="btn btn-yerovy" href="/Producto/Create">
+                <i class="fa-solid fa-plus"></i>
+                Nuevo Producto
+            </a>
+        }
+
+    </div>
+
+    <div class="row g-4">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6">
+
+                <div class="product-card">
+                    <img src="@item.ImagenUrl" class="product-image" />
+
+                    <div class="product-body">
+                        <h3 class="product-title">
+                            @item.Nombre
+                        </h3>
+
+                    <div class="product-info">
+                        <div>
+                            <strong>Tipo: </strong>@item.Tipo
+                        </div>
+
+                        <div>
+                            <strong>Precio: </strong>$@item.Precio
+                        </div>
+
+                        <div>
+                            <strong>Stock: </strong>@item.Stock
+                        </div>
+
+                        <div>
+                            <strong>Categoría: </strong>@item.Categoria?.Nombre
+                        </div>
+
+                    </div>
 
                     @if (Context.Session.GetString("Rol") == "admin")
                     {
-                        <a href="/Producto/Edit/@item.Id"
-                           class="btn btn-warning btn-sm">Editar</a>
-                        <a href="/Producto/Delete/@item.Id"
-                           class="btn btn-danger btn-sm">Eliminar</a>
+                        <div class="product-actions">
+
+                            <a href="/Producto/Edit/@item.Id" class="btn btn-edit">
+                                <i class="fa-solid fa-pen"></i>
+                                    Editar
+                            </a>
+
+                            <a href="/Producto/Delete/@item.Id" class="btn btn-delete">
+                                <i class="fa-solid fa-trash"></i>
+                                    Eliminar
+                            </a>
+
+                        </div>
                     }
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>

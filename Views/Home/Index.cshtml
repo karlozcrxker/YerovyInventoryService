@@ -2,87 +2,297 @@
     ViewData["Title"] = "Inicio";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Inicio - Sistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <style>
-            body {
-                background-color: #0d0d0d;
-                color: #ffffff;
-                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-                margin: 0;
-            }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
 
-            .header {
-                background-color: #111;
-                padding: 5px;
-                text-align: center;
-                border-bottom: 1px solid #222;
-                width: 100%;
-            }
+<style>
 
-            .header h1 {
-                margin: 0;
-                font-size: 28px;
-            }
+    body {
+        background-color: #050505;
+        font-family: 'Poppins', sans-serif;
+    }
 
-            .container {
-                display: flex;
-                justify-content: center;
-                gap: 30px;
-                margin-top: 60px;
-                flex-wrap: wrap;
-            }
+    .home-container {
+        color: white;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 
-            .card {
-                background-color: #1a1a1a;
-                padding: 30px;
-                border-radius: 200px;
-                width: 250px;
-                text-align: center;
-                box-shadow: 0 0 10px rgba(0,0,0,0.5);
-                transition: 0.3s;
-            }
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.1;
+    }
 
-            .card:hover {
-                transform: scale(1.05);
-                background-color: #222;
-            }
+    .red-text {
+        color: #ff2d2d;
+    }
 
-            .card h3 {
-                margin-bottom: 15px;
-                color: white;
-            }
+    .hero-description {
+        color: #c4c4c4;
+        font-size: 1.1rem;
+        line-height: 1.9;
+    }
 
-            .card p {
-                font-size: 14px;
-                color: #ccc;
-            }
+    .hero-box {
+        background: linear-gradient( 145deg, rgba(255,0,0,.08), rgba(255,255,255,.02) );
+        border: 1px solid rgba(255,0,0,.15);
+        border-radius: 24px;
+        min-height: 380px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #d0d0d0;
+        padding: 30px;
+    }
 
-            .btn {
-                display: inline-block;
-                margin-top: 15px;
-                padding: 10px 15px;
-                background-color: #333;
-                color: white;
-                text-decoration: none;
-                border-radius: 75px;
-                transition: 0.3s;
-            }
+    .hero-icon {
+        font-size: 4rem;
+        color: #ff2d2d;
+        margin-bottom: 20px;
+    }
 
-            .btn:hover {
-                background-color: #555;
-            }
+    .yerovy-card {
+        background-color: #101010;
+        border: 1px solid #252525;
+        border-radius: 20px;
+        padding: 30px;
+        height: 100%;
+        transition: .3s ease;
+    }
 
-    </style>
-</head>
+        .yerovy-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,0,0,.3);
+            box-shadow: 0 10px 25px rgba(255,0,0,.08);
+        }
 
-<body>
-    <div class="header">
-        <h1>Panel Principal</h1>
-        <p>Sistema de Inventario - YerovyInventoryService</p>
+        .yerovy-card h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .yerovy-card p {
+            color: #c4c4c4;
+            line-height: 1.8;
+        }
+
+    .btn-yerovy {
+        background: linear-gradient( 135deg, #a80000, #ff2d2d );
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 14px;
+        transition: .3s ease;
+    }
+
+        .btn-yerovy:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255,0,0,.35);
+        }
+
+    .section-title {
+        color: white;
+        font-weight: 700;
+    }
+
+</style>
+
+<div class="container home-container">
+
+    <!-- HERO -->
+
+    <div class="row align-items-center g-5">
+
+        <!-- TEXTO -->
+
+        <div class="col-lg-6">
+
+            <h1 class="hero-title">
+
+                Bienvenido a
+
+                <span class="red-text">
+                    Polarizados Yerovy
+                </span>
+
+            </h1>
+
+            <p class="hero-description mt-4">
+
+                Especialistas en polarizados automotrices,
+                instalación de vinilos, accesorios y
+                personalización estética para vehículos.
+
+            </p>
+
+            <p class="hero-description">
+
+                Esta plataforma permitirá administrar
+                información del establecimiento
+                de forma moderna, organizada y eficiente.
+
+            </p>
+
+            <div class="mt-4">
+
+                <a asp-controller="Producto"
+                       asp-action="Index"
+                       class="btn btn-yerovy">
+
+                    Explorar sistema
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- ESPACIO MULTIMEDIA -->
+
+        <div class="col-lg-6">
+
+            <div class="hero-box">
+
+                <div>
+
+                    <i class="fa-solid fa-image hero-icon"></i>
+
+                    <h4>
+                        Espacio para imágenes o videos
+                    </h4>
+
+                    <p>
+                        Aquí podrás agregar banners,
+                        promociones o contenido visual.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-</body>
-</html>
+
+    <!-- INFORMACION -->
+
+    <div class="row mt-5 g-4">
+
+        <div class="col-lg-4">
+
+            <div class="yerovy-card">
+
+                <h3>
+                    ¿Quiénes somos?
+                </h3>
+
+                <p>
+
+                    Polarizados Yerovy es un establecimiento
+                    enfocado en mejorar la estética y comodidad
+                    de los vehículos mediante servicios
+                    especializados.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="yerovy-card">
+
+                <h3>
+                    Nuestro objetivo
+                </h3>
+
+                <p>
+
+                    Ofrecer servicios de calidad mientras
+                    se implementan herramientas digitales
+                    modernas para optimizar el trabajo diario.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="yerovy-card">
+
+                <h3>
+                    Plataforma moderna
+                </h3>
+
+                <p>
+
+                    Este sistema continuará evolucionando
+                    para incluir nuevas funcionalidades,
+                    estadísticas y herramientas administrativas.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- SECCION EXTRA -->
+
+    <div class="yerovy-card mt-5">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-7">
+
+                <h2 class="section-title mb-4">
+
+                    Información adicional
+
+                </h2>
+
+                <p class="hero-description">
+
+                    Este espacio podrá utilizarse
+                    posteriormente para promociones,
+                    noticias, novedades o mensajes
+                    importantes del establecimiento.
+
+                </p>
+
+            </div>
+
+            <div class="col-lg-5">
+
+                <div class="hero-box" style="min-height:250px;">
+
+                    <div>
+
+                        <i class="fa-solid fa-video hero-icon"></i>
+
+                        <p>
+                            Espacio multimedia secundario
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

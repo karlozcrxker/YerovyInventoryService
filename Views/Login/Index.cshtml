@@ -1,18 +1,221 @@
-﻿<h2>Login</h2>
-<form method="post">
+﻿@{
+    Layout = null;
+}
 
-    <div class="mb-3">
-        <label>Correo</label>
-        <input name="correo" class="form-control" />
-    </div>
-    <div class="mb-3">
-        <label>Clave</label>
-        <input name="clave" type="password" class="form-control" />
-    </div>
-    <button class="btn btn-primary">Ingresar</button>
+<!DOCTYPE html>
+<html lang="es">
 
-    @if (ViewBag.Error != null)
-    {
-        <div class="text-danger">@ViewBag.Error</div>
-    }
-</form>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login - Polarizados Yerovy</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+
+            * {
+                font-family: 'Poppins', sans-serif;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                background: linear-gradient( rgba(0,0,0,.92), rgba(0,0,0,.95) ), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1974&auto=format&fit=crop');
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .login-container {
+                width: 100%;
+                max-width: 450px;
+                background: rgba(15,15,15,.92);
+                border: 1px solid rgba(255,0,0,.15);
+                border-radius: 28px;
+                padding: 45px;
+                backdrop-filter: blur(12px);
+                box-shadow: 0 10px 35px rgba(0,0,0,.45);
+            }
+
+            .logo-container {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+                .logo-container img {
+                    width: 110px;
+                    height: 110px;
+                    object-fit: cover;
+                    border-radius: 20px;
+                    border: 2px solid #ff2d2d;
+                    box-shadow: 0 0 20px rgba(255,0,0,.25);
+                }
+
+            .login-title {
+                color: white;
+                font-size: 2.2rem;
+                font-weight: 700;
+                text-align: center;
+                margin-top: 20px;
+            }
+
+            .red-text {
+                color: #ff2d2d;
+            }
+
+            .login-subtitle {
+                color: #bdbdbd;
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 35px;
+                line-height: 1.8;
+            }
+
+            .form-label {
+                color: white;
+                font-weight: 500;
+                margin-bottom: 10px;
+            }
+
+            .form-control {
+                background-color: #121212;
+                border: 1px solid #2b2b2b;
+                color: white;
+                border-radius: 14px;
+                padding: 14px 16px;
+            }
+
+                .form-control:focus {
+                    background-color: #121212;
+                    color: white;
+                    border-color: #ff2d2d;
+                    box-shadow: 0 0 0 .2rem rgba(255,0,0,.15);
+                }
+
+                .form-control::placeholder {
+                    color: #7c7c7c;
+                }
+
+            .btn-login {
+                width: 100%;
+                background: linear-gradient( 135deg, #a80000, #ff2d2d );
+                border: none;
+                color: white;
+                font-weight: 600;
+                padding: 14px;
+                border-radius: 14px;
+                margin-top: 15px;
+                transition: .3s ease;
+            }
+
+                .btn-login:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 0 18px rgba(255,0,0,.35);
+                    color: white;
+                }
+
+            .input-group-text {
+                background-color: #151515;
+                border: 1px solid #2b2b2b;
+                color: #ff2d2d;
+            }
+
+            .error-message {
+                background: rgba(255,0,0,.08);
+                border: 1px solid rgba(255,0,0,.15);
+                color: #ff8f8f;
+                padding: 15px;
+                border-radius: 14px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- LOGO -->
+        <div class="logo-container">
+            <img src="~/images/logomono.jpeg" alt="Logo Yerovy" />
+        </div>
+
+        <!-- TITULO -->
+        <h1 class="login-title">
+            Polarizados
+            <span class="red-text">
+                Yerovy
+            </span>
+        </h1>
+
+        <p class="login-subtitle">
+            Plataforma administrativa para gestión
+            de servicios e inventario del establecimiento.
+        </p>
+
+        <!-- ERROR -->
+        @if (ViewBag.Error != null)
+        {
+            <div class="error-message">
+                @ViewBag.Error
+            </div>
+        }
+
+        <form method="post">
+
+            <div class="mb-4">
+
+                <label class="form-label">Correo</label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+
+                    <input name="correo" class="form-control" placeholder="Ingrese su correo" />
+                </div>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">Contraseña</label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="fa-solid fa-lock"></i>
+                    </span>
+                    <input name="clave" type="password" class="form-control" placeholder="Ingrese su contraseña" />
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-login">Iniciar sesión</button>
+
+        </form>
+    </div>
+</body>
+</html>

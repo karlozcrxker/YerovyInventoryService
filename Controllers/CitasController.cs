@@ -1,20 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using YerovyInventoryService.Helpers;
-using YerovyInventoryService.Data;
+using System.Diagnostics;
 using YerovyInventoryService.Models;
-
 
 namespace YerovyInventoryService.Controllers
 {
     public class CitasController : Controller
     {
-        private readonly YerovyContext _context;
+        private readonly ILogger<HomeController> _logger;
 
-        public CitasController(YerovyContext context)
+        public CitasController(ILogger<HomeController> logger)
         {
-            _context = context;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -24,9 +20,7 @@ namespace YerovyInventoryService.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            var citas = _context.Citas.ToList();
-
-            return View(citas);
+            return View();
         }
     }
 }
