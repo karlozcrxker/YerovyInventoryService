@@ -1,42 +1,257 @@
-﻿@if (Context.Session.GetString("Rol") != "admin")
+﻿@model List<YerovyInventoryService.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+<style>
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background-color: #050505;
+    }
+
+    .categories-container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        color: white;
+    }
+
+    .page-title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .red-text {
+        color: #ff2d2d;
+    }
+
+    .page-description {
+        color: #bdbdbd;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        max-width: 800px;
+    }
+
+    .btn-yerovy {
+        background: linear-gradient(135deg, #a80000, #ff2d2d);
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 12px 22px;
+        border-radius: 14px;
+        transition: .3s ease;
+    }
+
+        .btn-yerovy:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(255,0,0,.35);
+        }
+
+    .category-table {
+        margin-top: 40px;
+        background-color: #101010;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid #252525;
+    }
+
+        .category-table table {
+            margin-bottom: 0;
+        }
+
+        .category-table thead {
+            background-color: #181818;
+        }
+
+        .category-table th {
+            color: white;
+            border: none;
+            padding: 22px;
+            font-weight: 700;
+        }
+
+        .category-table td {
+            border-color: #1f1f1f;
+            padding: 22px;
+            vertical-align: middle;
+        }
+
+        .category-table tbody tr {
+            transition: .3s ease;
+        }
+
+            .category-table tbody tr:hover {
+                background-color: rgba(255,255,255,.03);
+            }
+
+    .status-active {
+        display: inline-block;
+        background-color: rgba(0,255,120,.12);
+        color: #57ff9d;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: .85rem;
+        font-weight: 600;
+    }
+
+    .status-inactive {
+        display: inline-block;
+        background-color: rgba(255,0,0,.12);
+        color: #ff6b6b;
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: .85rem;
+        font-weight: 600;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-edit {
+        background-color: #ffc107;
+        border: none;
+        color: black;
+        font-weight: 600;
+        border-radius: 12px;
+        padding: 10px 18px;
+    }
+
+    .btn-delete {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        font-weight: 600;
+        border-radius: 12px;
+        padding: 10px 18px;
+    }
+
+        .btn-edit:hover,
+        .btn-delete:hover {
+            transform: translateY(-2px);
+        }
+
+    .error-box {
+        background-color: #101010;
+        border: 1px solid rgba(255,0,0,.2);
+        border-radius: 24px;
+        padding: 50px;
+        text-align: center;
+        margin-top: 60px;
+    }
+
+        .error-box h1 {
+            color: #ff2d2d;
+            font-size: 4rem;
+            font-weight: 800;
+        }
+
+        .error-box p {
+            color: #c4c4c4;
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+</style>
+
+@if (Context.Session.GetString("Rol") != "admin")
 {
-    <h1>ERROR</h1>
-    <p>Solo los administradores tienen permitido el acceso.</p>
+    <div class="container categories-container">
+        <div class="error-box">
+            <h1>ACCESO DENEGADO</h1>
+
+            <p>
+                Solo los administradores tienen permitido
+                el acceso a este módulo.
+            </p>
+        </div>
+    </div>
 }
 
 @if (Context.Session.GetString("Rol") == "admin")
 {
-    @model List<YerovyInventoryService.Models.Categoria>
+    <div class="container categories-container">
 
-    <h2 class="mb-3">Lista de Categorias</h2>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-5">
+            <div>
+                <h1 class="page-title">Gestión de
+                    <span class="red-text">
+                        Categorías
+                    </span>
+                </h1>
 
-    <a class="btn btn-success mb-3" href="/Categoria/Create">+ Nueva Categoria</a>
+                <p class="page-description">
 
-    <table class="table">
-        <thead class="table-dark">
-            <tr>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var cat in Model)
-            {
-                <tr>
-                    <td>@cat.Nombre</td>
-                    <td>@cat.Descripcion</td>
-                    <td>@cat.Estado</td>
-                    <td>
-                        <a class="btn btn-warning btn-sm"
-                           href="/Categoria/Edit/@cat.Id">Editar</a>
+                    Administra las categorías utilizadas
+                    para organizar productos y servicios
+                    dentro del inventario.
 
-                        <a class="btn btn-danger btn-sm"
-                           href="/Categoria/Delete/@cat.Id">Eliminar</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                </p>
+            </div>
+
+            <a class="btn btn-yerovy" href="/Categoria/Create">
+                <i class="fa-solid fa-plus"></i>
+                Nueva Categoría
+            </a>
+        </div>
+
+        <div class="category-table">
+            <table class="table"
+                   style="
+                --bs-table-bg: #101010;
+                --bs-table-color: #d5d5d5;
+                --bs-table-border-color: #1f1f1f;
+                background-color: #101010;
+                color: #d5d5d5;">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var cat in Model)
+                    {
+                        <tr>
+                            <td>@cat.Nombre</td>
+                            <td>@cat.Descripcion</td>
+                            <td>@cat.Estado</td>
+                            <td>
+                                <div class="actions">
+                                    <a class="btn btn-edit" href="/Categoria/Edit/@cat.Id">
+                                        <i class="fa-solid fa-pen"></i>
+                                        Editar
+                                    </a>
+
+                                    <a class="btn btn-delete" href="/Categoria/Delete/@cat.Id">
+                                        <i class="fa-solid fa-trash"></i>
+                                        Eliminar
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 }
