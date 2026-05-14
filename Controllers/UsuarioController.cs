@@ -86,8 +86,15 @@ namespace YerovyInventoryService.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            _context.Usuarios.Update(usuario);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                usuario.Clave = HashHelper.ObtenerHash(usuario.Clave);
+
+                _context.Usuarios.Update(usuario);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
 
             return RedirectToAction("Index");
         }

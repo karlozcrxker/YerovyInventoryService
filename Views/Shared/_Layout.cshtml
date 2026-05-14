@@ -1,4 +1,9 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Mvc;
+@using Microsoft.EntityFrameworkCore;
+@using System.Collections.Generic;
+@using YerovyInventoryService.Helpers;
+@using YerovyInventoryService.Data;
+@using YerovyInventoryService.Models;
 
 <!DOCTYPE html>
 <html lang="es">
@@ -45,11 +50,14 @@
 
                 <ul class="navbar-nav mx-auto gap-lg-2">
 
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Categoria" asp-action="Index">
-                            <i class="fa-solid fa-layer-group"></i> Categorías
-                        </a>
-                    </li>
+                    @if (Context.Session.GetString("Rol") == "admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Categoria" asp-action="Index">
+                                <i class="fa-solid fa-layer-group"></i> Categorías
+                            </a>
+                        </li>
+                    }
 
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Producto" asp-action="Index">
@@ -63,18 +71,24 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Contabilidad" asp-action="Index">
-                            <i class="fa-solid fa-chart-line"></i> Contabilidad
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">
-                            <i class="fa-solid fa-users"></i> Usuarios
-                        </a>
-                    </li>
-
+                    @if (Context.Session.GetString("Rol") == "admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Contabilidad" asp-action="Index">
+                                <i class="fa-solid fa-chart-line"></i> Contabilidad
+                            </a>
+                        </li>
+                    }
+                        
+                    @if (Context.Session.GetString("Rol") == "admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">
+                                <i class="fa-solid fa-users"></i> Usuarios
+                            </a>
+                        </li>
+                    }
+                    
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="Contactos" asp-action="Index">
                             <i class="fa-solid fa-phone"></i> Contactos
