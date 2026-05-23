@@ -14,7 +14,7 @@ namespace YerovyInventoryService.Models
         [StringLength(100)]
         public string Nombre { get; set; }
 
-        [Range(0, 1000000000)]
+        [Range(0, 100000000000)]
         public double Precio { get; set; }
 
         [Range(0, 100)]

@@ -6,9 +6,9 @@ namespace YerovyInventoryService.Controllers
 {
     public class CitasController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CitasController> _logger;
 
-        public CitasController(ILogger<HomeController> logger)
+        public CitasController(ILogger<CitasController> logger)
         {
             _logger = logger;
         }

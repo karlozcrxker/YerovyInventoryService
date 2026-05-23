@@ -33,9 +33,9 @@ namespace YerovyInventoryService.Controllers
 
         public IActionResult Create()
         {
-            if (HttpContext.Session.GetString("Usuario") == null)
+            if (HttpContext.Session.GetString("Usuario") == "Cliente")
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Home");
             }
 
             return View();
@@ -44,9 +44,9 @@ namespace YerovyInventoryService.Controllers
         [HttpPost]
         public IActionResult Create(Usuario usuario)
         {
-            if (HttpContext.Session.GetString("Usuario") == null)
+            if (HttpContext.Session.GetString("Usuario") == "Cliente")
             {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index", "Home");
             }
 
             if (ModelState.IsValid)

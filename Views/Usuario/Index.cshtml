@@ -165,8 +165,8 @@
                 ACCESO DENEGADO
             </h1>
             <p>
-                Solo los administradores tienen permitido
-                el acceso a este módulo.
+                No tienes los permisos necesarios para
+                acceder a este módulo.
             </p>
         </div>
 
@@ -225,19 +225,22 @@
 
                         </div>
 
-                        <div class="user-actions">
+                        @if (Context.Session.GetString("Rol") == "admin")
+                        {
+                            <div class="product-actions">
 
-                            <a href="/Usuario/Edit/@user.Id" class="btn btn-edit">
-                                <i class="fa-solid fa-pen"></i>
-                                Editar
-                            </a>
+                                <a href="/Producto/Edit/@user.Id" class="btn btn-edit">
+                                    <i class="fa-solid fa-pen"></i>
+                                    Editar
+                                </a>
 
-                            <a href="/Usuario/Delete/@user.Id" class="btn btn-delete">
-                                <i class="fa-solid fa-trash"></i>
-                                Eliminar
-                            </a>
+                                <a href="/Producto/Delete/@user.Id" class="btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                    Eliminar
+                                </a>
 
-                        </div>
+                            </div>
+                        }
                     </div>
                 </div>
             }

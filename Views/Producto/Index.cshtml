@@ -151,7 +151,7 @@
             </p>
         </div>
 
-        @if (Context.Session.GetString("Rol") == "admin")
+        @if (Context.Session.GetString("Rol") != "Cliente")
         {
             <a class="btn btn-yerovy" href="/Producto/Create">
                 <i class="fa-solid fa-plus"></i>
@@ -200,12 +200,24 @@
 
                             <a href="/Producto/Edit/@item.Id" class="btn btn-edit">
                                 <i class="fa-solid fa-pen"></i>
-                                    Editar
+                                Editar
                             </a>
 
                             <a href="/Producto/Delete/@item.Id" class="btn btn-delete">
                                 <i class="fa-solid fa-trash"></i>
-                                    Eliminar
+                                Eliminar
+                            </a>
+
+                        </div>
+                    }
+
+                    @if (Context.Session.GetString("Rol") == "Trabajador")
+                    {
+                        <div class="product-actions">
+
+                            <a href="/Producto/Edit/@item.Id" class="btn btn-edit">
+                                <i class="fa-solid fa-pen"></i>
+                                    Editar
                             </a>
 
                         </div>

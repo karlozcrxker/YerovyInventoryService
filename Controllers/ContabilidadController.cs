@@ -6,9 +6,9 @@ namespace YerovyInventoryService.Controllers
 {
     public class ContabilidadController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CitasController> _logger;
 
-        public ContabilidadController(ILogger<HomeController> logger)
+        public ContabilidadController(ILogger<CitasController> logger)
         {
             _logger = logger;
         }

@@ -97,9 +97,18 @@
                     
                 </ul>
 
-                @if (User.IsInRole != null){
+                @if (Context.Session.GetString("Rol") == null)
+                {
                     <div class="d-flex">
-                        <a class="btn btn-yerovy" href="/Login/Logout">
+                        <a class="btn btn-yerovy" asp-area="" asp-controller="Login" asp-action="Index">
+                            <i class="fa-solid fa-user-lock"></i> Iniciar Sesión
+                        </a>
+                    </div>
+                }
+
+                @if (Context.Session.GetString("Rol") != null){
+                    <div class="d-flex">
+                        <a class="btn btn-yerovy text-white" href="/Login/Logout" style="color: white !important;">
                             <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
                         </a>
                     </div>
@@ -117,6 +126,9 @@
     <footer class="yerovy-footer text-center">
         <div>
             © 2026 Polarizados Yerovy - Sistema de Inventario y Gestión
+        </div>
+        <div>
+            Cra. 19 #12-20 Avenida Las Américas - Pasto
         </div>
     </footer>
 
