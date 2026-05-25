@@ -50,21 +50,28 @@ namespace TiendaVirtualGuacas.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            if (imagen == null)
+            // VALIDAR MODELO
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("ImagenUrl",
-                    "La imagen es obligatoria");
+                ViewBag.Categorias = _context.Categorias.ToList();
+                return View(producto);
             }
 
-            if (ModelState.IsValid)
+            // CREAR CARPETA SI NO EXISTE
+            var carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
+            if (!Directory.Exists(carpeta))
+            {
+                Directory.CreateDirectory(carpeta);
+            }
+
+            // VALIDAR SI SUBE IMAGEN
+            if (imagen != null)
             {
                 var nombreArchivo = Guid.NewGuid().ToString()
                                     + Path.GetExtension(imagen.FileName);
 
-                var ruta = Path.Combine(
-                    Directory.GetCurrentDirectory(),
-                    "wwwroot/images",
-                    nombreArchivo);
+                var ruta = Path.Combine(carpeta, nombreArchivo);
 
                 using (var stream = new FileStream(ruta, FileMode.Create))
                 {
@@ -72,16 +79,17 @@ namespace TiendaVirtualGuacas.Controllers
                 }
 
                 producto.ImagenUrl = "/images/" + nombreArchivo;
-
-                _context.Productos.Add(producto);
-                _context.SaveChanges();
-
-                return RedirectToAction("Index");
+            }
+            else
+            {
+                // IMAGEN POR DEFECTO
+                producto.ImagenUrl = "/images/default.png";
             }
 
-            ViewBag.Categorias = _context.Categorias.ToList();
+            _context.Productos.Add(producto);
+            _context.SaveChanges();
 
-            return View(producto);
+            return RedirectToAction("Index");
         }
 
         //Formulario editar

@@ -30,10 +30,9 @@ namespace YerovyInventoryService.Models
         [Required(ErrorMessage = "La categoría es obligatoria")]
         public int CategoriaId { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public Categoria? Categoria { get; set; }
 
-        [Required(ErrorMessage = "La imagen es obligatoria")]
-        public string ImagenUrl { get; set; }
+        public string? ImagenUrl { get; set; }
 
         public double CalcularValorInventario()
         {
