@@ -156,7 +156,7 @@
 
 </style>
 
-@if (Context.Session.GetString("Rol") != "admin")
+@if (Context.Session.GetString("Rol") == "Cliente")
 {
     <div class="container users-container">
 
@@ -173,7 +173,7 @@
     </div>
 }
 
-@if (Context.Session.GetString("Rol") == "admin")
+else
 {
     <div class="container users-container">
 
@@ -193,10 +193,14 @@
                 </p>
             </div>
 
-            <a class="btn btn-yerovy" href="/Usuario/Create">
-                <i class="fa-solid fa-plus"></i>
-                Nuevo Usuario
-            </a>
+            @if (Context.Session.GetString("Rol") == "admin")
+            {
+                <a class="btn btn-yerovy" href="/Usuario/Create">
+                    <i class="fa-solid fa-plus"></i>
+                    Nuevo Usuario
+                </a>
+            }
+            
 
         </div>
 
@@ -227,14 +231,14 @@
 
                         @if (Context.Session.GetString("Rol") == "admin")
                         {
-                            <div class="product-actions">
+                            <div class="user-actions">
 
-                                <a href="/Producto/Edit/@user.Id" class="btn btn-edit">
+                                <a href="/Usuario/Edit/@user.Id" class="btn btn-edit">
                                     <i class="fa-solid fa-pen"></i>
                                     Editar
                                 </a>
 
-                                <a href="/Producto/Delete/@user.Id" class="btn btn-delete">
+                                <a href="/Usuario/Delete/@user.Id" class="btn btn-delete">
                                     <i class="fa-solid fa-trash"></i>
                                     Eliminar
                                 </a>

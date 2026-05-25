@@ -170,7 +170,7 @@
 
 </style>
 
-@if (Context.Session.GetString("Rol") != "admin")
+@if (Context.Session.GetString("Rol") == "Cliente")
 {
     <div class="container categories-container">
         <div class="error-box">
@@ -184,7 +184,7 @@
     </div>
 }
 
-@if (Context.Session.GetString("Rol") == "admin")
+else
 {
     <div class="container categories-container">
 

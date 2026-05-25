@@ -149,6 +149,15 @@
                 <input asp-for="Correo"class="form-control" />
                 <span asp-validation-for="Correo" class="text-danger"></span>
             </div>
+            
+            @if (Context.Session.GetString("Rol") == null){
+                <div class="mb-4">
+                    <label class="form-label">Rol</label>
+                    <select asp-for="Rol" class="form-select">
+                        <option value="Cliente">Cliente</option>
+                    </select>
+                </div>
+            }
 
             @if (Context.Session.GetString("Rol") != null)
             {
@@ -156,15 +165,6 @@
                     <label class="form-label">Rol</label>
                     <select asp-for="Rol" class="form-select">
                         <option value="Trabajador">Trabajador</option>
-                        <option value="Cliente">Cliente</option>
-                    </select>
-                </div>
-            }
-
-            @if (Context.Session.GetString("Rol") == null){
-                <div class="mb-4">
-                    <label class="form-label">Rol</label>
-                    <select asp-for="Rol" class="form-select">
                         <option value="Cliente">Cliente</option>
                     </select>
                 </div>

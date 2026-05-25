@@ -50,23 +50,38 @@ namespace TiendaVirtualGuacas.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            if (imagen != null)
+            if (imagen == null)
             {
-                var ruta = Path.Combine(Directory.GetCurrentDirectory(),
-                    "wwwroot/images", imagen.FileName);
+                ModelState.AddModelError("ImagenUrl",
+                    "La imagen es obligatoria");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var nombreArchivo = Guid.NewGuid().ToString()
+                                    + Path.GetExtension(imagen.FileName);
+
+                var ruta = Path.Combine(
+                    Directory.GetCurrentDirectory(),
+                    "wwwroot/images",
+                    nombreArchivo);
 
                 using (var stream = new FileStream(ruta, FileMode.Create))
                 {
                     imagen.CopyTo(stream);
                 }
 
-                producto.ImagenUrl = "/images/" + imagen.FileName;
+                producto.ImagenUrl = "/images/" + nombreArchivo;
+
+                _context.Productos.Add(producto);
+                _context.SaveChanges();
+
+                return RedirectToAction("Index");
             }
 
-            _context.Productos.Add(producto);
-            _context.SaveChanges();
+            ViewBag.Categorias = _context.Categorias.ToList();
 
-            return RedirectToAction("Index");
+            return View(producto);
         }
 
         //Formulario editar

@@ -48,10 +48,15 @@ namespace YerovyInventoryService.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            _context.Categorias.Add(categoria);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Categorias.Add(categoria);
+                _context.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            return View(categoria);
         }
 
         //Formulario editar

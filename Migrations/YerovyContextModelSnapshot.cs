@@ -31,12 +31,11 @@ namespace YerovyInventoryService.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasMaxLength(100000)
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("Estado")
                         .IsRequired()
-                        .HasMaxLength(100000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")

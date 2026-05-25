@@ -131,14 +131,18 @@
 
     <div class="form-card">
         <form asp-action="Create" method="post">
+            <div asp-validation-summary="All" class="text-danger mb-4"></div>
+
             <div class="mb-4">
                 <label class="form-label">Nombre</label>
                 <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
 
             <div class="mb-4">
                 <label class="form-label">Descripción</label>
                 <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
 
             <div class="mb-4">

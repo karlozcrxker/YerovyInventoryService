@@ -113,7 +113,6 @@
         <!-- TEXTO -->
 
         <div class="col-lg-6">
-
             <h1 class="hero-title">
 
                 Bienvenido a
@@ -121,7 +120,6 @@
                 <span class="red-text">
                     Polarizados Yerovy
                 </span>
-
             </h1>
 
             <p class="hero-description mt-4">
@@ -141,7 +139,6 @@
             </p>
 
             <div class="mt-4">
-
                 <a asp-controller="Producto"
                        asp-action="Index"
                        class="btn btn-yerovy">
@@ -149,36 +146,39 @@
                     Explorar sistema
 
                 </a>
-
             </div>
-
         </div>
 
         <!-- ESPACIO MULTIMEDIA -->
 
         <div class="col-lg-6">
+            <div class="hero-box p-0 overflow-hidden">
 
-            <div class="hero-box">
-
-                <div>
-
-                    <i class="fa-solid fa-image hero-icon"></i>
-
-                    <h4>
-                        Espacio para imágenes o videos
-                    </h4>
-
-                    <p>
-                        Aquí podrás agregar banners,
-                        promociones o contenido visual.
-                    </p>
-
-                </div>
-
+                <img src="@Url.Content("~/images/FrenteLocal.jpeg")"
+                     alt="Polarizados Yerovy"
+                     style="
+                width:100%;
+                height:100%;
+                object-fit:cover;
+                border-radius:24px;" />
             </div>
-
         </div>
 
+        <div class="hero-box p-0 overflow-hidden">
+            <video controls
+                   autoplay
+                   muted
+                   loop
+                   playsinline
+                   style="
+                width:100%;
+                height:100%;
+                object-fit:cover;">
+
+                <source src="@Url.Content("~/videos/VideoLocal.mp4")"
+                        type="video/mp4">
+            </video>
+        </div>
     </div>
 
     <!-- INFORMACION -->
@@ -241,53 +241,6 @@
                     estadísticas y herramientas administrativas.
 
                 </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- SECCION EXTRA -->
-
-    <div class="yerovy-card mt-5">
-
-        <div class="row align-items-center g-4">
-
-            <div class="col-lg-7">
-
-                <h2 class="section-title mb-4">
-
-                    Información adicional
-
-                </h2>
-
-                <p class="hero-description">
-
-                    Este espacio podrá utilizarse
-                    posteriormente para promociones,
-                    noticias, novedades o mensajes
-                    importantes del establecimiento.
-
-                </p>
-
-            </div>
-
-            <div class="col-lg-5">
-
-                <div class="hero-box" style="min-height:250px;">
-
-                    <div>
-
-                        <i class="fa-solid fa-video hero-icon"></i>
-
-                        <p>
-                            Espacio multimedia secundario
-                        </p>
-
-                    </div>
-
-                </div>
 
             </div>
 
